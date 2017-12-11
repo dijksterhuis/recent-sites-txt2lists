@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+{% for filename in cats %}
+<h1>{{filename}}</h1>
+{% for url in data_dict[filename] %}
+<li> <a href={{url}}>{{url}}</a> </li>
+{% endfor %}
+{% endfor %}
+</html>
