@@ -2,8 +2,8 @@
 """
 load_redis.py
 ------------------------
-- Script to initially load urls into a Redis instance from .txt files
-- Only to be used for bulk inserts of urls (no priority fields etc.)
+- Script to load urls data into a Redis instance from .txt files
+- Only to be used for bulk inserts of urls (no priority/notes data exists in the .txt files)
 - Usage:
     >>> f = Files()
     >>> f.add('/Users/Mike/data/tmp/recent-sites-redis-inserts/','foo.txt')
@@ -16,10 +16,20 @@ load_redis.py
     18:52-02/03/2018 foo example http://example.com/test.html
     18:52-02/03/2018 foo example http://example.com/bar
     18:52-02/03/2018 foo example http://example.com/
+    >>>
+    >>> f.print_all_site_info()
+    18:52-02/03/2018 foo gkhsdgh http://gkhsdgh.com/egohsnsf
+    18:52-02/03/2018 foo example http://example.com/test.html
+    18:52-02/03/2018 foo example http://example.com/bar
+    18:52-02/03/2018 foo example http://example.com/
+
 """
 
 class Files:
-    """ Object to hold all the FileObjects """
+    """ All File objects """
+    
+    __slots__ = ('objs',)
+    
     def __init__(self):
         self.objs = None
         
@@ -57,9 +67,12 @@ class Files:
 
 
 class File:
-    """ An Object to hold .txt file data """
+    """ .txt file metadata and actual site contents (Site object) """
+    
+    __slots__ = ('file_path', 'file_contents', 'time_added', 'category')
+    
     def __init__(self):
-        self._file_path = None
+        self.file_path = None
         self.file_contents = None
         self.time_added = None
         self.category = None
@@ -67,7 +80,7 @@ class File:
     def add(self, file_path, file_name):
         from datetime import datetime as dt
         if isinstance(file_path,str) and isinstance(file_name,str):
-            self._file_path = file_path + file_name
+            self.file_path = file_path + file_name
             self.category = file_name.rstrip('.txt')
             self._open()
             self.time_added = dt.now().strftime('%H:%M-%m/%d/%Y')
@@ -81,7 +94,7 @@ class File:
         
     def _open(self):
         if self.file_contents is None: self.file_contents = []
-        with open(self._file_path,'r') as f:
+        with open(self.file_path,'r') as f:
             for line in f.readlines():
                 site = Site()
                 site.add(line.rstrip('\r\n'))
@@ -103,7 +116,10 @@ class File:
             yield (self.time_added, self.category, content.name, content.url )
 
 class Site:
-    """ Object to hold data for individual sites """
+    """ Data for individual sites """
+    
+    __slots__ = ('url','name')
+    
     def __init__(self):
         self.url = None
         self.name = None
