@@ -1,4 +1,4 @@
-#/usr/bin/env python
+#!/usr/bin/env python
 
 from flask import Flask, url_for, request, render_template
 from get_links_from_txt_files import get_data

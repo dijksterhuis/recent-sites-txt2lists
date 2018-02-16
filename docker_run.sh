@@ -2,10 +2,11 @@
 
 docker pull dijksterhuis/recent-sites:latest
 
-path=$1'/app/'
-echo $path
-docker run -d --rm \
+txt_file_path=$1
+echo "Mounting "$path" to /home/app/data/ on recent-sites-flask"
+docker run -di --rm \
     -p 80:100 \
-    -v $path:/home/ \
+    -v $txt_file_path:/home/app/data/ \
     --name recent-sites-flask \
-    dijksterhuis/recent-sites:latest
+    dijksterhuis/recent-sites:latest \
+    /home/app.py
