@@ -3,7 +3,7 @@
 docker pull dijksterhuis/recent-sites:latest
 
 txt_file_path=$1
-echo "Mounting "$path" to /home/app/data/ on recent-sites-flask"
+echo "Mounting "$txt_file_path" to /home/app/data/ on recent-sites-flask"
 docker run -di --rm \
     -p 80:100 \
     -v $txt_file_path:/home/data/ \
