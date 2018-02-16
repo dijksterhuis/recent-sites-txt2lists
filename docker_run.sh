@@ -2,4 +2,8 @@
 
 path=$1'/app/'
 echo $path
-docker run -d --rm -p 200:100 -v $path:/home/ --name recent-sites-flask recent-site-flask:0.1 /bin/ash -c 'python /home/app.py'
+docker run -d --rm \
+    -p 80:100 \
+    -v $path:/home/ \
+    --name recent-sites-flask \
+    dijksterhuis/recent-sites:latest

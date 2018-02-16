@@ -3,9 +3,11 @@
 
 FROM python:alpine
 WORKDIR /home/
-RUN pip install --upgrade flask flask_restful requests
+RUN pip install --upgrade flask flask_restful requests redis
 # Extension
 # COPY /Users/Mike/Desktop/sites/*.txt ./app/data/
 # Mounting volume directly on run (allows for real-time updates) - so not required 
 # COPY ./app/ /home/
 EXPOSE 100
+ENTRYPOINT ['/bin/ash/']
+CMD ['/home/app.py']
