@@ -1,5 +1,7 @@
 # Docker run .sh script to launch a flask app from $path/app/
 
+docker pull dijksterhuis/recent-sites:latest
+
 path=$1'/app/'
 echo $path
 docker run -d --rm \
