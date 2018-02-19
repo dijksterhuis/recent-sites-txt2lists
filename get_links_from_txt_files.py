@@ -10,9 +10,10 @@ def get_data(filepath='/home/ec2-user/'):
             if '.txt' in filename:
                 l = list()
                 with open(filepath + filename,'r') as f:
-                    for line in f.readlines():
-                        try: l.append(line.rstrip('\n\r'))
-                        except UnicodeDecodeError: l.append("ERROR LOADING: "+str(line))
+                    try:
+                        l = [line.rstrip('\n\r') for line in f.readlines()]
+                    except UnicodeDecodeError as e:
+                        l = ["ERROR LOADING LINKS FROM FILE: "+str(e)]
                 l.reverse()
                 d[filename] = l
     return d
