@@ -2,7 +2,6 @@
 
 from flask import Flask, url_for, request, render_template
 from get_links_from_txt_files import get_data
-import redis
 
 #TODO from requests import get
 # -- get site name etc.
