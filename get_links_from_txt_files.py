@@ -9,7 +9,7 @@ def get_data(filepath='/home/ec2-user/'):
             print('FILENAME:', filename)
             if '.txt' in filename:
                 l = list()
-                with open(filepath + filename,'r') as f:
+                with open(filepath + filename,'r', encoding="utf-8") as f:
                     try:
                         l = [line.rstrip('\n\r') for line in f.readlines()]
                     except UnicodeDecodeError as e:

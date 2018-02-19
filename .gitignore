@@ -1,5 +1,6 @@
 app/data/*.txt
 data/*.txt
+*.pyc
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
