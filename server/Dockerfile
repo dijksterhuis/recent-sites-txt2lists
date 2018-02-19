@@ -9,3 +9,4 @@ RUN pip install -r /home/reqs.txt ; rm /home/reqs.txt
 COPY ./app/ /home/
 RUN chmod u+x /home/app.py
 EXPOSE 100
+ENTRYPOINT ["/home/app.py"]
