@@ -1,0 +1,5 @@
+pymongo
+flask
+flask_restful
+requests
+argparse

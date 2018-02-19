@@ -3,7 +3,8 @@
 
 FROM python:alpine
 WORKDIR /home/
-RUN pip install --upgrade flask flask_restful requests redis
+COPY reqs.txt /home/
+RUN pip install -r /home/reqs.txt ; rm /home/reqs.txt
 # Copy flask data
 COPY ./app/ /home/
 RUN chmod u+x /home/app.py
