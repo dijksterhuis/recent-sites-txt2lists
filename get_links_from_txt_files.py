@@ -8,8 +8,11 @@ def get_data(filepath='/home/ec2-user/'):
         for filename in os.listdir(filepath):
             print('FILENAME:', filename)
             if '.txt' in filename:
+                l = list()
                 with open(filepath + filename,'r') as f:
-                    l  = [ line.rstrip('\n\r') for line in f.readlines() ]
+                    for line in f.readlines():
+                        try: l.append(line.rstrip('\n\r'))
+                        except UnicodeDecodeError: l.append("ERROR LOADING: "+str(line))
                 l.reverse()
                 d[filename] = l
     return d
