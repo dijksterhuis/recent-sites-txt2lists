@@ -1,4 +1,4 @@
-def get_data(filepath='./data/'):
+def get_data(filepath='/home/ec2-user/'):
 	import os
 	d, files_list = dict(), os.listdir(filepath)
 	if len(files_list) < 1:
