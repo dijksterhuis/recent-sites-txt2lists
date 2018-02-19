@@ -5,6 +5,7 @@ from get_links_from_txt_files import get_data
 # -- get site name etc.
 
 application = Flask(__name__)
+app = application
 
 @app.route('/')
 def index():
@@ -26,5 +27,5 @@ def edit():
     return render_template('empty.html')
 
 if __name__ == '__main__':
-    application.debug = True
-    application.run()
+    app.debug = True
+    app.run()
