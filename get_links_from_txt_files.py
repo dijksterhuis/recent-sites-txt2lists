@@ -6,9 +6,10 @@ def get_data(filepath='/home/ec2-user/'):
         exit()
     else:
         for filename in os.listdir(filepath):
+            print('FILENAME:', filename)
             if '.txt' in filename:
                 with open(filepath + filename,'r') as f:
-                    l  = [ line.decode('utf-8').rstrip('\n\r') for line in f.readlines() ]
+                    l  = [ line.rstrip('\n\r') for line in f.readlines() ]
                 l.reverse()
                 d[filename] = l
     return d
