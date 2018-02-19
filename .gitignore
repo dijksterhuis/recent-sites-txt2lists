@@ -1,5 +1,5 @@
-app/data/*
-data/*
+app/data/*.txt
+data/*.txt
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
